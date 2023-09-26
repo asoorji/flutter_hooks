@@ -1,43 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-enum ContainerColor {
-  orange,
-  blue,
-  green,
-  purple,
-}
-
-Color mapContainerColor(ContainerColor containerColor) {
-  switch (containerColor) {
-    case ContainerColor.orange:
-      return Colors.orange;
-    case ContainerColor.blue:
-      return Colors.blue;
-    case ContainerColor.green:
-      return Colors.green;
-    case ContainerColor.purple:
-      return Colors.purple;
-    default:
-      return Colors.transparent; // You can choose a default color here.
-  }
-}
+// Define constants for container colors
+const Color orangeColor = Colors.orange;
+const Color blueColor = Colors.blue;
+const Color greenColor = Colors.green;
+const Color purpleColor = Colors.purple;
 
 final containerColorProvider =
-    StateNotifierProvider.autoDispose<ContainerColorNotifier, ContainerColor>(
-        (ref) => ContainerColorNotifier());
+    StateNotifierProvider<ContainerColorNotifier, Color>(
+  (ref) => ContainerColorNotifier(),
+);
 
-class ContainerColorNotifier extends StateNotifier<ContainerColor> {
-  ContainerColorNotifier() : super(ContainerColor.orange);
+class ContainerColorNotifier extends StateNotifier<Color> {
+  ContainerColorNotifier() : super(orangeColor);
 
-  void changeColor(ContainerColor color) {
+  void changeColor(Color color) {
     state = color;
   }
 }
-
-final containerColor = Provider.autoDispose((ref) {
-  return ref.watch(containerColorProvider);
-});
 
 class ColorContainer extends ConsumerWidget {
   const ColorContainer({Key? key}) : super(key: key);
@@ -50,7 +31,7 @@ class ColorContainer extends ConsumerWidget {
       width: 100,
       height: 100,
       decoration: BoxDecoration(
-        color: mapContainerColor(containerColor),
+        color: containerColor,
         borderRadius: BorderRadius.circular(50),
       ),
     );
@@ -72,36 +53,36 @@ class MyApp extends ConsumerWidget {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    ref.read(containerColorProvider.notifier).changeColor(
-                          ContainerColor.orange,
-                        );
+                    ref
+                        .read(containerColorProvider.notifier)
+                        .changeColor(orangeColor);
                   },
                   child: Text('Orange'),
                 ),
                 SizedBox(width: 20),
                 ElevatedButton(
                   onPressed: () {
-                    ref.read(containerColorProvider.notifier).changeColor(
-                          ContainerColor.blue,
-                        );
+                    ref
+                        .read(containerColorProvider.notifier)
+                        .changeColor(blueColor);
                   },
                   child: Text('Blue'),
                 ),
                 SizedBox(width: 20),
                 ElevatedButton(
                   onPressed: () {
-                    ref.read(containerColorProvider.notifier).changeColor(
-                          ContainerColor.green,
-                        );
+                    ref
+                        .read(containerColorProvider.notifier)
+                        .changeColor(greenColor);
                   },
                   child: Text('Green'),
                 ),
                 SizedBox(width: 20),
                 ElevatedButton(
                   onPressed: () {
-                    ref.read(containerColorProvider.notifier).changeColor(
-                          ContainerColor.purple,
-                        );
+                    ref
+                        .read(containerColorProvider.notifier)
+                        .changeColor(purpleColor);
                   },
                   child: Text('Purple'),
                 ),
