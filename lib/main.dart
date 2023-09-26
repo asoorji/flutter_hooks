@@ -1,24 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'container.dart'; // Import the ColorContainer widget from the separate file
 
-const Color orangeColor = Colors.orange;
-const Color blueColor = Colors.blue;
-const Color greenColor = Colors.green;
-const Color purpleColor = Colors.purple;
-
-final containerColorProvider =
-    StateNotifierProvider<ContainerColorNotifier, Color>(
-  (ref) => ContainerColorNotifier(),
-);
-
-class ContainerColorNotifier extends StateNotifier<Color> {
-  ContainerColorNotifier() : super(orangeColor);
-
-  void changeColor(Color color) {
-    state = color;
-  }
-}
+import 'container.dart';
+import 'state.dart';
 
 class MyApp extends ConsumerWidget {
   @override

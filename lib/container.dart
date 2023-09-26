@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import 'main.dart';
+import 'state.dart';
 
 class ColorContainer extends ConsumerWidget {
   const ColorContainer({Key? key}) : super(key: key);
