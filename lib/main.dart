@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'container.dart'; // Import the ColorContainer widget from the separate file
 
-// Define constants for container colors
 const Color orangeColor = Colors.orange;
 const Color blueColor = Colors.blue;
 const Color greenColor = Colors.green;
@@ -20,24 +20,6 @@ class ContainerColorNotifier extends StateNotifier<Color> {
   }
 }
 
-class ColorContainer extends ConsumerWidget {
-  const ColorContainer({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final containerColor = ref.watch(containerColorProvider);
-
-    return Container(
-      width: 100,
-      height: 100,
-      decoration: BoxDecoration(
-        color: containerColor,
-        borderRadius: BorderRadius.circular(50),
-      ),
-    );
-  }
-}
-
 class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -46,7 +28,7 @@ class MyApp extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ColorContainer(),
+            ColorContainer(), // Use the ColorContainer widget here
             SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
